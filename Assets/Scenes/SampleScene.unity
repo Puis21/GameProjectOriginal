@@ -632,7 +632,6 @@ GameObject:
   - component: {fileID: 776887418}
   - component: {fileID: 776887417}
   - component: {fileID: 776887416}
-  - component: {fileID: 776887419}
   m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -714,20 +713,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776887414}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &776887419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 776887414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71f25257826f1674185e5fbc1548b736, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 100
-  fpsCam: {fileID: 1657291332}
 --- !u!1 &949699350
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,9 +891,10 @@ GameObject:
   - component: {fileID: 1152021190}
   - component: {fileID: 1152021195}
   - component: {fileID: 1152021194}
+  - component: {fileID: 1152021196}
   m_Layer: 8
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -982,7 +968,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152021189}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22, y: 1.03, z: -0.85}
+  m_LocalPosition: {x: -0.22, y: 1.03, z: -0.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 776887415}
@@ -1025,6 +1011,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &1152021196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152021189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71f25257826f1674185e5fbc1548b736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolDown: 0
+  coolDownTimer: 0
+  range: 100
+  spiritSpeed: 100
+  bullet: {fileID: 6136843959840143914, guid: 2ac770b9f57d80848a4c4deb9c881140, type: 3}
+  fpsCam: {fileID: 1657291332}
 --- !u!1 &1173588499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,7 +1394,7 @@ GameObject:
   - component: {fileID: 1935588906}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Controlable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
