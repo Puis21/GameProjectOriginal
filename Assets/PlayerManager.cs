@@ -32,11 +32,13 @@ public class PlayerManager : MonoBehaviour
         {
             coolDownTimer = 0;
         }
-
-        if (Input.GetButtonDown("Fire1") && coolDownTimer == 0) 
+        if (Input.GetKey(KeyCode.LeftAlt))
         {
-            Ability();
-            coolDownTimer = coolDown;
+            if (Input.GetButtonDown("Fire1") && coolDownTimer == 0)
+            {
+                Ability();
+                coolDownTimer = coolDown;
+            }
         }
     }
 

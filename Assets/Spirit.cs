@@ -5,17 +5,32 @@ using UnityEngine;
 public class Spirit : MonoBehaviour
 {
     public float speed = 8f;
+    GameObject playerCamera;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
+    }
+
     void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
+
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag != "Player")
         {
+            /*
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "MainCamera")
+                    child.gameObject.SetActive(false);
+            }
+            */
+            ShootSpirit.canUse = true;
+           // playerCamera.SetActive(false);
             Destroy(gameObject);
         }
     }
