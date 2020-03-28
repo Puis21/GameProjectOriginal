@@ -132,14 +132,15 @@ GameObject:
   m_Component:
   - component: {fileID: 13428704}
   - component: {fileID: 13428706}
+  - component: {fileID: 13428707}
   - component: {fileID: 13428705}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &13428704
 Transform:
   m_ObjectHideFlags: 0
@@ -147,12 +148,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13428703}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.03, z: -3.34}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.82, y: 1.53, z: -5.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1935588909}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!81 &13428705
 AudioListener:
@@ -205,6 +206,54 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &13428707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13428703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8b882cf840c3541afbdcdbe53e7142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1935588909}
+  position:
+    targetPosOffset: {x: 0, y: 3.4, z: 0}
+    distanceFromTarget: -8
+    zoomSmooth: 100
+    zoomStep: 2
+    maxZoom: -2
+    minZoom: -15
+    smoothFollow: 1
+    smoot: 0.05
+    newDistance: -8
+    adjustmentDistance: -8
+  orbit:
+    xRotation: -20
+    yRotation: -180
+    maxXRotation: 25
+    minXRotation: -50
+    vOrbitSmooth: 0.5
+    hOrbitSmooth: 0.5
+  input:
+    MOUSE_ORBIT: MouseOrbit
+    MOUSE_ORBIT_VERTICAL: MouseOrbitVertical
+    ORBIT_HORIZONTAL_SNAP: OrbitHorizontalSnap
+    ORBIT_HORIZONTAL: OrbitHorizontal
+    ORBIT_VERTICAL: OrbitVertical
+    ZOOM: Mouse ScrollWheel
+  debug:
+    drawDesiredCollisionLines: 1
+    drawAdjustedCollisionLines: 1
+  collision:
+    collisionLayer:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    colliding: 0
+    adjustedCameraClipPoints: []
+    desiredCameraCliPoints: []
 --- !u!1 &123150041
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +348,7 @@ RectTransform:
   - {fileID: 1173588500}
   - {fileID: 1192640572}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -526,12 +575,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e8b882cf840c3541afbdcdbe53e7142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockCursor: 1
-  mouseSensitivity: 10
   target: {fileID: 1948717286}
-  dstFromTarget: 4
-  pitchMinMax: {x: -40, y: 85}
-  rotationSmoothTime: 0.12
+  position:
+    targetPosOffset: {x: 0, y: 3.4, z: 0}
+    distanceFromTarget: -8
+    zoomSmooth: 100
+    zoomStep: 2
+    maxZoom: -2
+    minZoom: -15
+    smoothFollow: 1
+    smoot: 0.05
+    newDistance: -8
+    adjustmentDistance: -8
+  orbit:
+    xRotation: -20
+    yRotation: -180
+    maxXRotation: 25
+    minXRotation: -50
+    vOrbitSmooth: 0.5
+    hOrbitSmooth: 0.5
+  input:
+    MOUSE_ORBIT: MouseOrbit
+    MOUSE_ORBIT_VERTICAL: MouseOrbitVertical
+    ORBIT_HORIZONTAL_SNAP: OrbitHorizontalSnap
+    ORBIT_HORIZONTAL: OrbitHorizontal
+    ORBIT_VERTICAL: OrbitVertical
+    ZOOM: Mouse ScrollWheel
+  debug:
+    drawDesiredCollisionLines: 1
+    drawAdjustedCollisionLines: 1
+  collision:
+    collisionLayer:
+      serializedVersion: 2
+      m_Bits: 0
+    colliding: 0
+    adjustedCameraClipPoints: []
+    desiredCameraCliPoints: []
 --- !u!1 &355862879
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +748,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -920,7 +999,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -1041,7 +1120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &1152021190
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1606,6 +1685,8 @@ GameObject:
   - component: {fileID: 1935588907}
   - component: {fileID: 1935588906}
   - component: {fileID: 1935588910}
+  - component: {fileID: 1935588911}
+  - component: {fileID: 1935588912}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Controlable
@@ -1683,10 +1764,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.82, y: 0.5, z: -1.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 13428704}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1935588910
 MonoBehaviour:
@@ -1700,6 +1780,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26be09851c63b6a439ce5d20000a15be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1935588911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935588905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f840e9be7fda55046a758316d44f6c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationPeriod: 0.3
+  sideLength: 1
+--- !u!143 &1935588912
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935588905}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1948717282
 GameObject:
   m_ObjectHideFlags: 0

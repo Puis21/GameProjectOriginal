@@ -4,40 +4,21 @@ using UnityEngine;
 
 public class ObjectLook : MonoBehaviour
 {
-	public bool lockCursor;
-	public float mouseSensitivity = 10;
-	public Transform target;
-	public float dstFromTarget = 2;
-	public Vector2 pitchMinMax = new Vector2(-40, 85);
+	[SerializeField] Vector3 cameraOffset;
+	[SerializeField] float damping;
 
-	public float rotationSmoothTime = .12f;
-	Vector3 rotationSmoothVelocity;
-	Vector3 currentRotation;
+	Transform cameraTarget;
+	CubeRoll cube;
 
-	float yaw;
-	float pitch;
-
-	void Start()
+	private void Update()
 	{
-		if (lockCursor)
-		{
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
-		}
-	}
+		Vector3 targetposition = cameraTarget.position + cube.transform.forward * cameraOffset.z + cube.transform.up * cameraOffset.y +
+			cube.transform.right * cameraOffset.x;
 
-	void LateUpdate()
-	{
-		yaw += Input.GetAxis("MouseX") * mouseSensitivity;
-		pitch -= Input.GetAxis("MouseY") * mouseSensitivity;
-		pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
+		Quaternion targetRotation = Quaternion.LookRotation(cameraTarget.position - targetposition, Vector3.up);
 
-		currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(pitch, yaw), ref rotationSmoothVelocity, rotationSmoothTime);
-		transform.eulerAngles = currentRotation;
-
-		transform.position = target.position - transform.forward * dstFromTarget;
-
+		transform.position = Vector3.Lerp(transform.position, targetposition, damping * Time.deltaTime);
+		transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, damping * Time.deltaTime);
 	}
 
 }
-
