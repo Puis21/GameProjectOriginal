@@ -7,9 +7,13 @@ public class MovementScript : MonoBehaviour
 
     // public CharacterController controller;
     Rigidbody playerRb;
+    Animator anim;
 
-    public float speed = 12f;
-    public float jumpForce = 4f;
+    [SerializeField] private float speed;
+    [SerializeField] private float jumpForce;
+
+    private bool isWalkingFront;
+    private bool isWalkingRight;
 
     public LayerMask groundLayers;
 
@@ -20,6 +24,7 @@ public class MovementScript : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody>();
         col = GetComponent<CapsuleCollider>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -40,11 +45,37 @@ public class MovementScript : MonoBehaviour
 
         transform.Translate(strafe, 0, translation);
 
+        anim.SetBool("walkingFront", isWalkingFront);
+        anim.SetBool("walkingRight", isWalkingRight);
+
         if(isGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
+        if(isGrounded())
+        {
+            speed = 3.0f;
+        }
+        else if(!isGrounded())
+        {
+            speed = 1.5f;
+        }
+
+        if (playerRb.velocity.magnitude > 0 && Input.GetKey(KeyCode.W) && isGrounded())
+        {
+            isWalkingFront = true;
+        }
+        else if (playerRb.velocity.magnitude > 0 && Input.GetKey(KeyCode.D) && isGrounded())
+        {
+            isWalkingRight = true;
+        }
+        else
+        {
+            isWalkingFront = false;
+            isWalkingRight = false;
+        }
+    
     }
 
     private bool isGrounded()

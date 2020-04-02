@@ -4,49 +4,38 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
+    [SerializeField] private float lookSensitivity;
+    [SerializeField] private float smoothing;
+    [SerializeField] private int maxLookRotation;
 
-    public float mouseSensitivity = 5f;
-    //public float smoothing = 2.0f;
+    private GameObject player;
+    private Vector2 smoothedVelocity;
+    private Vector2 currentLookingPos;
 
-    public Transform playerBody;
-
-    float xRotation = 0f;
-
-    //GameObject character;
-   // Vector2 smoothV;
-   // Vector2 mouseLook;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        //character = this.transform.parent.gameObject;
+        player = transform.parent.gameObject;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
-        float mouseX = Input.GetAxis("MouseX") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("MouseY") * mouseSensitivity * Time.deltaTime;
-        
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        RotateCamera();
+    }
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        playerBody.Rotate(Vector3.up * mouseX);
-        
-        /*
-        var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+    private void RotateCamera()
+    {
+        Vector2 InputValues = new Vector2(Input.GetAxis("MouseX"), Input.GetAxis("MouseY"));
 
-        md = Vector2.Scale(md, new Vector2(mouseSensitivity * smoothing, mouseSensitivity * smoothing));
-        smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
-        smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
-        mouseLook += smoothV;
+        InputValues = Vector2.Scale(InputValues, new Vector2(lookSensitivity * smoothing, lookSensitivity * smoothing));
+        smoothedVelocity.x = Mathf.Lerp(smoothedVelocity.x, InputValues.x, 1f / smoothing);
+        smoothedVelocity.y = Mathf.Lerp(smoothedVelocity.y, InputValues.y, 1f / smoothing);
 
-        transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
-        playerBody.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, playerBody.transform.up);
-        */
+        currentLookingPos += smoothedVelocity;
+
+        currentLookingPos.y = Mathf.Clamp(currentLookingPos.y, -maxLookRotation, maxLookRotation);
+        transform.localRotation = Quaternion.AngleAxis(-currentLookingPos.y, Vector3.right);
+        player.transform.localRotation = Quaternion.AngleAxis(currentLookingPos.x, player.transform.up);
 
     }
 }
