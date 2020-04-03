@@ -14,6 +14,8 @@ public class MovementScript : MonoBehaviour
 
     private bool isWalkingFront;
     private bool isWalkingRight;
+    private bool isWalkingLeft;
+    private bool isWalkingBack;
 
     public LayerMask groundLayers;
 
@@ -47,8 +49,10 @@ public class MovementScript : MonoBehaviour
 
         anim.SetBool("walkingFront", isWalkingFront);
         anim.SetBool("walkingRight", isWalkingRight);
+        anim.SetBool("walkingLeft", isWalkingLeft);
+        anim.SetBool("walkingBack", isWalkingBack);
 
-        if(isGrounded() && Input.GetKeyDown(KeyCode.Space))
+        if (isGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
@@ -65,15 +69,38 @@ public class MovementScript : MonoBehaviour
         if (playerRb.velocity.magnitude > 0 && Input.GetKey(KeyCode.W) && isGrounded())
         {
             isWalkingFront = true;
+            isWalkingLeft = false;
+            isWalkingRight = false;
+            isWalkingBack = false;
         }
         else if (playerRb.velocity.magnitude > 0 && Input.GetKey(KeyCode.D) && isGrounded())
         {
             isWalkingRight = true;
+            isWalkingLeft = false;
+            isWalkingFront = false;
+            isWalkingBack = false;
+        }
+        else if (playerRb.velocity.magnitude > 0 && Input.GetKey(KeyCode.A) && isGrounded())
+        {
+            isWalkingLeft = true;
+            isWalkingFront = false;
+            isWalkingRight = false;
+            isWalkingBack = false;
+        }
+        else if (playerRb.velocity.magnitude > 0 && Input.GetKey(KeyCode.S) && isGrounded())
+        {
+            isWalkingBack = true;
+            isWalkingLeft = false;
+            isWalkingFront = false;
+            isWalkingRight = false;
         }
         else
         {
             isWalkingFront = false;
             isWalkingRight = false;
+            isWalkingLeft = false;
+            isWalkingBack = false;
+
         }
     
     }
