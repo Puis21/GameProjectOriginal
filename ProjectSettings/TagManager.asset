@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Controlable
   - Spirit
+  - Button
   layers:
   - Default
   - TransparentFX
