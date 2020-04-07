@@ -20,7 +20,6 @@ public class ButtonType : MonoBehaviour
     }
     public void UseButtonAnim()
     {
-        doorState = 1;
         useButtonAnim.SetTrigger("ButtonOpen");
         useConnectedAnim.SetInteger("DoorState", 1);
         StartCoroutine("ButtonTimer");
@@ -31,7 +30,6 @@ public class ButtonType : MonoBehaviour
     private IEnumerator ButtonTimer()
     {
         yield return new WaitForSeconds(secondsToWait);
-        doorState = 2;
         useConnectedAnim.SetInteger("DoorState", 2);
       /*  yield return new WaitForSeconds(secondsToIdle);
         doorState = 0;

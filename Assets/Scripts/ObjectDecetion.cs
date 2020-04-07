@@ -6,6 +6,9 @@ public class ObjectDecetion : MonoBehaviour
 {
 
     GameObject playerMove;
+    public bool objectCamera;
+    public GameObject playerFpsCam;
+    public bool animControl;
 
     private void Start()
     {
@@ -14,11 +17,24 @@ public class ObjectDecetion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Spirit")
+        if (other.gameObject.tag == "Spirit")
         {
-            transform.GetChild(0).gameObject.SetActive(true);
-            playerMove.GetComponent<MovementScript>().enabled = false;
-            Debug.Log("MeHIt");
+            if (objectCamera)
+            {
+                transform.GetChild(0).gameObject.SetActive(true);
+                playerMove.GetComponent<MovementScript>().enabled = false;
+                PlatformMove.canControl = true;
+            }
+            else if (!objectCamera && !animControl)
+            {
+                playerFpsCam.SetActive(true);
+                PlatformMove.canControl = true;
+            }
+            else if (!objectCamera && animControl)
+            {
+                playerFpsCam.SetActive(true);
+                ObjectAnimation.canUseAnim = true;
+            }
         }
     }
 }

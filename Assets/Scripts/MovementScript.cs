@@ -103,7 +103,11 @@ public class MovementScript : MonoBehaviour
 
         }
 
-
+        if (Input.GetKey(KeyCode.F))
+        {
+            ObjectAnimation.canUseAnim = false;
+            PlatformMove.canControl = false;
+        }
     
     }
 
