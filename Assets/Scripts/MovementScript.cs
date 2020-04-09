@@ -16,6 +16,7 @@ public class MovementScript : MonoBehaviour
     private bool isWalkingRight;
     private bool isWalkingLeft;
     private bool isWalkingBack;
+    private bool jumped;
 
     public LayerMask groundLayers;
 
@@ -54,12 +55,15 @@ public class MovementScript : MonoBehaviour
 
         if (isGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
+            jumped = true;
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            anim.SetBool("jumped", jumped);
         }
 
         if(isGrounded())
         {
             speed = 3.0f;
+            jumped = false;
         }
       /*  else if(!isGrounded())
         {
@@ -107,6 +111,7 @@ public class MovementScript : MonoBehaviour
         {
             ObjectAnimation.canUseAnim = false;
             PlatformMove.canControl = false;
+            Spirit.isControlling = false;
         }
     
     }

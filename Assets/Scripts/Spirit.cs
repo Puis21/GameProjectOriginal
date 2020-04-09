@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spirit : MonoBehaviour
 {
     public float speed = 8f;
+    public static bool isControlling;
     GameObject playerCamera;
 
     private void Start()
@@ -30,8 +31,12 @@ public class Spirit : MonoBehaviour
             }
             */
             ShootSpirit.canUse = true;
-           // playerCamera.SetActive(false);
+            // playerCamera.SetActive(false);
             Destroy(gameObject);
+        }
+        else if (other.gameObject.tag == "Controlable")
+        {
+            isControlling = true;
         }
     }
 }
