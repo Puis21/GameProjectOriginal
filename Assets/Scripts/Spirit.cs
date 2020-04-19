@@ -6,11 +6,10 @@ public class Spirit : MonoBehaviour
 {
     public float speed = 8f;
     public static bool isControlling;
-    GameObject playerCamera;
 
     private void Start()
     {
-        playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
+
     }
 
     void Update()
@@ -33,10 +32,6 @@ public class Spirit : MonoBehaviour
             ShootSpirit.canUse = true;
             // playerCamera.SetActive(false);
             Destroy(gameObject);
-        }
-        else if (other.gameObject.tag == "Controlable")
-        {
-            isControlling = true;
         }
     }
 }

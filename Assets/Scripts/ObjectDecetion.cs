@@ -6,29 +6,40 @@ public class ObjectDecetion : MonoBehaviour
 {
     public Material[] material;
     GameObject playerMove;
+    PlatformMove platformScript;
     Renderer rend;
+
     public bool objectCamera;
     public GameObject playerFpsCam;
     public bool animControl;
 
+    public static bool canMovePlatform;
+    public static bool canUseAnim;
+
     private void Start()
     {
         playerMove = GameObject.FindGameObjectWithTag("Player");
+        platformScript = GetComponent<PlatformMove>();
         rend = GetComponent<Renderer>();
         rend.enabled = true;
-        rend.sharedMaterial = material[0];
     }
 
     private void Update()
     {
         if(UIManager.Instance.abilityPanel.activeSelf)
         {
-            Debug.Log("GLOWING");
             rend.sharedMaterial = material[1];
         }
         else
         {
             rend.sharedMaterial = material[0];
+        }
+        Debug.Log(Spirit.isControlling);
+
+        if (Input.GetKey(KeyCode.F))
+        {
+            platformScript.GetComponent<PlatformMove>().enabled = false;
+            Spirit.isControlling = false;
         }
     }
 
@@ -40,18 +51,15 @@ public class ObjectDecetion : MonoBehaviour
             {
                 transform.GetChild(0).gameObject.SetActive(true);
                 playerMove.GetComponent<MovementScript>().enabled = false;
-                PlatformMove.canControl = true;
+                Spirit.isControlling = true;
             }
             else if (!objectCamera && !animControl && !Spirit.isControlling)
             {
                 playerFpsCam.SetActive(true);
-                PlatformMove.canControl = true;
-            }
-            else if (!objectCamera && animControl && !Spirit.isControlling)
-            {
-                playerFpsCam.SetActive(true);
-                ObjectAnimation.canUseAnim = true;
-            }
+                platformScript.GetComponent<PlatformMove>().enabled = true;
+                Spirit.isControlling = true;
+                
+            }   
         }
     }
 }

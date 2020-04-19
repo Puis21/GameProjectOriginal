@@ -5,16 +5,19 @@ using UnityEngine;
 public class PlatformCollider : MonoBehaviour
 {
     public GameObject thePlatform;
-    public CapsuleCollider thePlayer;
     private void OnTriggerEnter(Collider other)
     {
-        thePlayer.transform.parent = thePlatform.transform;
-        Debug.Log("Platform");
+        if(other.gameObject.tag == "Player" || other.gameObject.tag == "Controlable")
+        {
+            other.transform.parent = thePlatform.transform;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        thePlayer.transform.parent = null;
-        Debug.Log("Platform Exit");
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Controlable")
+        {
+            other.transform.parent = null;
+        }
     }
 }

@@ -25,7 +25,7 @@ public class PlayerLook : MonoBehaviour
 
     private void RotateCamera()
     {
-        Vector2 InputValues = new Vector2(Input.GetAxis("MouseX"), Input.GetAxis("MouseY"));
+        Vector2 InputValues = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
         InputValues = Vector2.Scale(InputValues, new Vector2(lookSensitivity * smoothing, lookSensitivity * smoothing));
         smoothedVelocity.x = Mathf.Lerp(smoothedVelocity.x, InputValues.x, 1f / smoothing);

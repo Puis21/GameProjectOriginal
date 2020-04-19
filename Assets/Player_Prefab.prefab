@@ -3244,7 +3244,7 @@ GameObject:
   - component: {fileID: 2416924358385034945}
   - component: {fileID: 5224269462776108153}
   m_Layer: 8
-  m_Name: exo_gray
+  m_Name: Player_Prefab
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3346,6 +3346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f25257826f1674185e5fbc1548b736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonUse: {fileID: 0}
   TimeManager: {fileID: 0}
   bullet: {fileID: 0}
   range: 0

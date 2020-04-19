@@ -12,12 +12,6 @@ public class MovementScript : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
 
-    private bool isWalkingFront;
-    private bool isWalkingRight;
-    private bool isWalkingLeft;
-    private bool isWalkingBack;
-    private bool jumped;
-
     public LayerMask groundLayers;
 
     public CapsuleCollider col;
@@ -41,78 +35,37 @@ public class MovementScript : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
         */
-        float translation = Input.GetAxis("Vertical") * speed;
-        float strafe = Input.GetAxis("Horizontal") * speed;
-        translation *= Time.deltaTime;
-        strafe *= Time.deltaTime;
+        float translation = Input.GetAxis("Vertical");
+        float strafe = Input.GetAxis("Horizontal");
 
-        transform.Translate(strafe, 0, translation);
 
-        anim.SetBool("walkingFront", isWalkingFront);
-        anim.SetBool("walkingRight", isWalkingRight);
-        anim.SetBool("walkingLeft", isWalkingLeft);
-        anim.SetBool("walkingBack", isWalkingBack);
+        playerRb.transform.Translate(strafe * speed * Time.deltaTime, 0, translation * speed * Time.deltaTime);
+        anim.SetFloat("Vertical", translation);
+        anim.SetFloat("Horizontal", strafe);
+
 
         if (isGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
-            jumped = true;
+            anim.SetBool("jumped", true);
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            anim.SetBool("jumped", jumped);
+
+        }
+        else
+        {
+            anim.SetBool("jumped", false);
         }
 
         if(isGrounded())
         {
             speed = 3.0f;
-            jumped = false;
+   
         }
       /*  else if(!isGrounded())
         {
             speed = 1.5f;
         }*/
 
-        if (playerRb.velocity.magnitude > 0 && Input.GetKey(KeyCode.W) && isGrounded())
-        {
-            isWalkingFront = true;
-            isWalkingLeft = false;
-            isWalkingRight = false;
-            isWalkingBack = false;
-        }
-        else if (playerRb.velocity.magnitude > 0 && Input.GetKey(KeyCode.D) && isGrounded())
-        {
-            isWalkingRight = true;
-            isWalkingLeft = false;
-            isWalkingFront = false;
-            isWalkingBack = false;
-        }
-        else if (playerRb.velocity.magnitude > 0 && Input.GetKey(KeyCode.A) && isGrounded())
-        {
-            isWalkingLeft = true;
-            isWalkingFront = false;
-            isWalkingRight = false;
-            isWalkingBack = false;
-        }
-        else if (playerRb.velocity.magnitude > 0 && Input.GetKey(KeyCode.S) && isGrounded())
-        {
-            isWalkingBack = true;
-            isWalkingLeft = false;
-            isWalkingFront = false;
-            isWalkingRight = false;
-        }
-        else
-        {
-            isWalkingFront = false;
-            isWalkingRight = false;
-            isWalkingLeft = false;
-            isWalkingBack = false;
 
-        }
-
-        if (Input.GetKey(KeyCode.F))
-        {
-            ObjectAnimation.canUseAnim = false;
-            PlatformMove.canControl = false;
-            Spirit.isControlling = false;
-        }
     
     }
 

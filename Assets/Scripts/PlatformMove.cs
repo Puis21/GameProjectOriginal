@@ -6,27 +6,21 @@ public class PlatformMove : MonoBehaviour
 {
     Rigidbody rbComponent;
 
-    public GameObject player;
     public float speed;
-    public bool controllerHorizontal;
-    public static bool canControl;
-
 
     // Start is called before the first frame update
     void Start()
     {
         rbComponent = GetComponent<Rigidbody>();
-        canControl = false;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (controllerHorizontal && canControl)
-        {
-            HorizontalPlatform();
-        }
+   
+            FullControlPlatform();
+       
     }
 
     void HorizontalPlatform()
@@ -46,7 +40,7 @@ public class PlatformMove : MonoBehaviour
 
     void FullControlPlatform()
     {
-        float translation = Input.GetAxis("Vertical") * speed;
+        float translation = Input.GetAxis("Vertical2") * speed;
         float strafe = Input.GetAxis("Horizontal2") * speed;
         translation *= Time.deltaTime;
         strafe *= Time.deltaTime;

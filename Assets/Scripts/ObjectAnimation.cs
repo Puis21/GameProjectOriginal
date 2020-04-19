@@ -8,31 +8,26 @@ public class ObjectAnimation : MonoBehaviour
 
     private bool useAnim;
 
-    public static bool canUseAnim;
     // Start is called before the first frame update
     void Start()
     {
-        canUseAnim = false;
         useAnim = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (canUseAnim && Input.GetKeyDown(KeyCode.V) && !useAnim)
+        if (Input.GetKeyDown(KeyCode.V) && !useAnim)
         {
             useAnim = true;
             anim.SetBool("animUsed", useAnim);
+            Debug.Log("UsedAnim");
         }
-        else if(canUseAnim && Input.GetKeyDown(KeyCode.V) && useAnim)
+        else if(Input.GetKeyDown(KeyCode.V) && useAnim)
         {
             useAnim = false;
             anim.SetBool("animUsed", useAnim);
         }
-
-
-        Debug.Log("useAnim:" + useAnim);
-        Debug.Log("canUseAnim:" + canUseAnim);
 
     }
 }

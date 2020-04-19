@@ -10,6 +10,8 @@ public class ShootSpirit : MonoBehaviour
     public SlowMotion TimeManager;
     public GameObject bullet;
 
+
+
     [SerializeField] private float range;
     public static bool canUse;
     public static bool slowActive;
@@ -20,14 +22,13 @@ public class ShootSpirit : MonoBehaviour
     {
         canUse = true;
         slowActive = false;
-
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && !Spirit.isControlling)
         {
             UIManager.Instance.abilityPanel.SetActive(true);
             TimeManager.DoSlowMotion();
