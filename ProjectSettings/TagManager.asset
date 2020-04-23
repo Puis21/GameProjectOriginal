@@ -8,6 +8,8 @@ TagManager:
   - Spirit
   - Button
   - SecondCam
+  - Glass
+  - MoveControl
   layers:
   - Default
   - TransparentFX

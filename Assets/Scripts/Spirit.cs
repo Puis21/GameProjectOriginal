@@ -9,7 +9,6 @@ public class Spirit : MonoBehaviour
 
     private void Start()
     {
-
     }
 
     void Update()
@@ -20,7 +19,7 @@ public class Spirit : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "Player")
+        if (other.gameObject.tag != "Player" && other.gameObject.tag != "Glass")
         {
             /*
             foreach (Transform child in transform)
@@ -30,7 +29,7 @@ public class Spirit : MonoBehaviour
             }
             */
             ShootSpirit.canUse = true;
-            // playerCamera.SetActive(false);
+           // ShootSpirit.camState = true;
             Destroy(gameObject);
         }
     }

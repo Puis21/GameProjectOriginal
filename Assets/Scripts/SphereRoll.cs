@@ -4,27 +4,29 @@ using System.Collections;
 public class SphereRoll : MonoBehaviour
 {
 
-	public float walkSpeed = 2;
-	public float runSpeed = 6;
-	public float gravity = -9.81f;
-	public float jumpHeight = 1;
+	public float walkSpeed;
+	public float runSpeed;
+	public float gravity;
+	public float jumpHeight;
 	[Range(0, 1)]
 	public float airControlPercent;
 
-	public float turnSmoothTime = 0.2f;
+	public float turnSmoothTime;
 	float turnSmoothVelocity;
 
-	public float speedSmoothTime = 0.1f;
+	public float speedSmoothTime;
 	float speedSmoothVelocity;
 	float currentSpeed;
 	float velocityY;
+
+	public static bool isControlled;
 
 	Transform cameraT;
 	CharacterController controller;
 
 	void Start()
 	{
-		cameraT = Camera.main.transform;
+		cameraT = GameObject.FindGameObjectWithTag("SecondCam").transform;
 		controller = GetComponent<CharacterController>();
 	}
 
@@ -43,6 +45,16 @@ public class SphereRoll : MonoBehaviour
 		}
 		// animator
 
+		if (isControlled)
+		{
+			walkSpeed = 3f;
+			jumpHeight = 1.5f;
+		}
+		else
+		{
+			walkSpeed = 0f;
+			jumpHeight = 0f;
+		}
 	}
 
 	void Move(Vector2 inputDir, bool running)

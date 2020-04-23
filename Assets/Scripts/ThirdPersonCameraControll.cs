@@ -14,6 +14,9 @@ public class ThirdPersonCameraControll : MonoBehaviour
 	Vector3 rotationSmoothVelocity;
 	Vector3 currentRotation;
 
+	private Camera objCam;
+	private AudioListener objAudio;
+
 	float yaw;
 	float pitch;
 
@@ -23,6 +26,25 @@ public class ThirdPersonCameraControll : MonoBehaviour
 		{
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
+		}
+
+		objCam = GetComponent<Camera>();
+		objCam.enabled = false;
+		objAudio = GetComponent<AudioListener>();
+		objAudio.enabled = false;
+	}
+
+	private void Update()
+	{
+		if(ObjectDetectControl.objCamState)
+		{
+			objCam.enabled = true;
+			objAudio.enabled = true;
+		}
+		else
+		{
+			objCam.enabled = false;
+			objAudio.enabled = false;
 		}
 	}
 

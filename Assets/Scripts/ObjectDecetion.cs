@@ -5,20 +5,17 @@ using UnityEngine;
 public class ObjectDecetion : MonoBehaviour
 {
     public Material[] material;
-    GameObject playerMove;
     PlatformMove platformScript;
     Renderer rend;
 
     public bool objectCamera;
-    public GameObject playerFpsCam;
-    public bool animControl;
+    GameObject playerFpsCam;
 
     public static bool canMovePlatform;
     public static bool canUseAnim;
 
     private void Start()
     {
-        playerMove = GameObject.FindGameObjectWithTag("Player");
         platformScript = GetComponent<PlatformMove>();
         rend = GetComponent<Renderer>();
         rend.enabled = true;
@@ -34,7 +31,6 @@ public class ObjectDecetion : MonoBehaviour
         {
             rend.sharedMaterial = material[0];
         }
-        Debug.Log(Spirit.isControlling);
 
         if (Input.GetKey(KeyCode.F))
         {
@@ -47,13 +43,7 @@ public class ObjectDecetion : MonoBehaviour
     {
         if (other.gameObject.tag == "Spirit")
         {
-            if (objectCamera && !Spirit.isControlling)
-            {
-                transform.GetChild(0).gameObject.SetActive(true);
-                playerMove.GetComponent<MovementScript>().enabled = false;
-                Spirit.isControlling = true;
-            }
-            else if (!objectCamera && !animControl && !Spirit.isControlling)
+             if (!Spirit.isControlling)
             {
                 playerFpsCam.SetActive(true);
                 platformScript.GetComponent<PlatformMove>().enabled = true;

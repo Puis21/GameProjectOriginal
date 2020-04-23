@@ -35,6 +35,12 @@ public class ObjectDecetAnim : MonoBehaviour
         {
             rend.sharedMaterial = material[0];
         }
+
+        if (Input.GetKey(KeyCode.F))
+        {
+            animScript.GetComponent<ObjectAnimation>().enabled = false;
+            Spirit.isControlling = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

@@ -15,13 +15,15 @@ public class ShootSpirit : MonoBehaviour
     [SerializeField] private float range;
     public static bool canUse;
     public static bool slowActive;
+    public static bool camState;
 
     public Camera fpsCam;
-    
+
     private void Start()
     {
         canUse = true;
         slowActive = false;
+        camState = true;
     }
 
     // Update is called once per frame
@@ -36,7 +38,7 @@ public class ShootSpirit : MonoBehaviour
             if (Input.GetButtonDown("Fire1") && canUse)
             {
                 Ability();
-                fpsCam.gameObject.SetActive(false);
+                camState = false;
                 // canUse = false;                   
 
             }
@@ -68,6 +70,14 @@ public class ShootSpirit : MonoBehaviour
                 
         }
 
+        if (camState)
+        {
+            fpsCam.gameObject.SetActive(true);
+        }
+        else
+        {
+            fpsCam.gameObject.SetActive(false);
+        }
     }
 
     void Ability()
