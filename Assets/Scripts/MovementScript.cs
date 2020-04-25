@@ -35,38 +35,40 @@ public class MovementScript : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
         */
-        float translation = Input.GetAxis("Vertical");
-        float strafe = Input.GetAxis("Horizontal");
-
-
-        playerRb.transform.Translate(strafe * speed * Time.deltaTime, 0, translation * speed * Time.deltaTime);
-        anim.SetFloat("Vertical", translation);
-        anim.SetFloat("Horizontal", strafe);
-
-
-        if (isGrounded() && Input.GetKeyDown(KeyCode.Space))
+        if (GameManager.canAct)
         {
-            anim.SetBool("jumped", true);
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            float translation = Input.GetAxis("Vertical");
+            float strafe = Input.GetAxis("Horizontal");
+
+
+            playerRb.transform.Translate(strafe * speed * Time.deltaTime, 0, translation * speed * Time.deltaTime);
+            anim.SetFloat("Vertical", translation);
+            anim.SetFloat("Horizontal", strafe);
+
+
+            if (isGrounded() && Input.GetKeyDown(KeyCode.Space))
+            {
+                anim.SetBool("jumped", true);
+                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+            }
+            else
+            {
+                anim.SetBool("jumped", false);
+            }
+
+            if (isGrounded())
+            {
+                speed = 3.0f;
+
+            }
+            /*  else if(!isGrounded())
+              {
+                  speed = 1.5f;
+              }*/
+
 
         }
-        else
-        {
-            anim.SetBool("jumped", false);
-        }
-
-        if(isGrounded())
-        {
-            speed = 3.0f;
-   
-        }
-      /*  else if(!isGrounded())
-        {
-            speed = 1.5f;
-        }*/
-
-
-    
     }
 
     private bool isGrounded()

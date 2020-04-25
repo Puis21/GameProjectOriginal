@@ -6,18 +6,39 @@ using UnityEngine.Rendering.HighDefinition;
 
 public class GameManager : MonoBehaviour
 {
-    Vignette vign;
+    public static GameManager Instance;
+
+    public Transform lastCheckPointPos;
+    
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(Instance);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
+    public Animator startAnim;
+    public static bool canAct;
 
     // Start is called before the first frame update
     void Start()
     {
-        Volume volume = GetComponent<Volume>();
-        Vignette tempvign;
+        startAnim.SetTrigger("LiftGoUp");
+        canAct = false;
+        StartCoroutine(CanAct());
 
-        if (volume.profile.TryGet<Vignette>(out tempvign))
-        {
-            vign = tempvign;
-        }
-        vign.intensity.value = 0f;
+    }
+
+    private IEnumerator CanAct()
+    {
+        yield return new WaitForSeconds(0f);
+        canAct = true;
     }
 }

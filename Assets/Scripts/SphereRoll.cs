@@ -36,25 +36,27 @@ public class SphereRoll : MonoBehaviour
 		Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 		Vector2 inputDir = input.normalized;
 		bool running = Input.GetKey(KeyCode.LeftShift);
-
-		Move(inputDir, running);
-
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (GameManager.canAct)
 		{
-			Jump();
-		}
-		// animator
+			Move(inputDir, running);
 
-		if (isControlled)
-		{
-			walkSpeed = 3f;
-			jumpHeight = 1.5f;
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				Jump();
+			}
+			// animator
 		}
-		else
-		{
-			walkSpeed = 0f;
-			jumpHeight = 0f;
-		}
+			if (isControlled)
+			{
+				walkSpeed = 3f;
+				jumpHeight = 1.5f;
+			}
+			else
+			{
+				walkSpeed = 0f;
+				jumpHeight = 0f;
+			}
+		
 	}
 
 	void Move(Vector2 inputDir, bool running)

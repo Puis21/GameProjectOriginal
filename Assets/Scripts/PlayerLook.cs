@@ -20,7 +20,11 @@ public class PlayerLook : MonoBehaviour
 
     private void Update()
     {
-        RotateCamera();
+
+        if(GameManager.canAct)
+        {
+            RotateCamera();
+        }
     }
 
     private void RotateCamera()

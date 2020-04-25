@@ -40,6 +40,7 @@ public class ObjectDecetAnim : MonoBehaviour
         {
             animScript.GetComponent<ObjectAnimation>().enabled = false;
             Spirit.isControlling = false;
+            UIManager.Instance.animPanel.SetActive(false);
         }
     }
 
@@ -52,6 +53,7 @@ public class ObjectDecetAnim : MonoBehaviour
                 playerFpsCam.SetActive(true);
                 animScript.GetComponent<ObjectAnimation>().enabled = true;
                 Spirit.isControlling = true;
+                UIManager.Instance.animPanel.SetActive(true);
             }
         }
     }

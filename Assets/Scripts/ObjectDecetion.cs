@@ -9,7 +9,7 @@ public class ObjectDecetion : MonoBehaviour
     Renderer rend;
 
     public bool objectCamera;
-    GameObject playerFpsCam;
+    public GameObject playerFpsCam;
 
     public static bool canMovePlatform;
     public static bool canUseAnim;
@@ -36,6 +36,7 @@ public class ObjectDecetion : MonoBehaviour
         {
             platformScript.GetComponent<PlatformMove>().enabled = false;
             Spirit.isControlling = false;
+            UIManager.Instance.platformPanel.SetActive(false);
         }
     }
 
@@ -48,7 +49,7 @@ public class ObjectDecetion : MonoBehaviour
                 playerFpsCam.SetActive(true);
                 platformScript.GetComponent<PlatformMove>().enabled = true;
                 Spirit.isControlling = true;
-                
+                UIManager.Instance.platformPanel.SetActive(true);
             }   
         }
     }

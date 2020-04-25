@@ -1,19 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.SceneManagement;
 
 public class AcidDectection : MonoBehaviour
 {
-    public GameObject sphere;
-    private void OnTriggerEnter(Collider other)
+    GameObject playerMove;
+
+    private void Start()
+    {
+        playerMove = GameObject.FindGameObjectWithTag("Player");
+    }
+
+        private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "MoveControl")
         {
             Debug.Log("ALO");
             Destroy(other.gameObject);
-            SpawnPoint.objectCreated = false;        
+            SpawnPoint.objectCreated = false;
+            ShootSpirit.camState = true;
+            playerMove.GetComponent<MovementScript>().enabled = true;
+            SphereRoll.isControlled = false;
+            Spirit.isControlling = false;
+        }
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.transform.position = GameManager.Instance.lastCheckPointPos.position;
         }
     }
 

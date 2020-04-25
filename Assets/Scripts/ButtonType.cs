@@ -23,8 +23,6 @@ public class ButtonType : MonoBehaviour
         useButtonAnim.SetTrigger("ButtonOpen");
         useConnectedAnim.SetInteger("DoorState", 1);
         StartCoroutine("ButtonTimer");
-        Debug.Log("Pressed");
-        Debug.Log("doorState= " + doorState);
     }
 
     private IEnumerator ButtonTimer()

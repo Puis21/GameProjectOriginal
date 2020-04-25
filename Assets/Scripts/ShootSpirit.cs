@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShootSpirit : MonoBehaviour
 {
-    public ButtonType buttonUse;
+    ButtonType buttonUse;
     RaycastHit hit;
 
     public SlowMotion TimeManager;
@@ -24,60 +24,61 @@ public class ShootSpirit : MonoBehaviour
         canUse = true;
         slowActive = false;
         camState = true;
+        buttonUse = FindObjectOfType<ButtonType>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKey(KeyCode.LeftShift) && !Spirit.isControlling)
+        if (GameManager.canAct)
         {
-            UIManager.Instance.abilityPanel.SetActive(true);
-            TimeManager.DoSlowMotion();
-
-            if (Input.GetButtonDown("Fire1") && canUse)
+            if (Input.GetKey(KeyCode.LeftShift) && !Spirit.isControlling && !Spirit.isAlive)
             {
-                Ability();
-                camState = false;
-                // canUse = false;                   
+                UIManager.Instance.abilityPanel.SetActive(true);
+                TimeManager.DoSlowMotion();
 
-            }
-        }
-        else
-        {
-            UIManager.Instance.abilityPanel.SetActive(false);
-            TimeManager.DoSpeedUp();
-        }
-
-
-        Debug.DrawRay(fpsCam.transform.position, fpsCam.transform.forward * range, Color.green);
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
-        {
-            if (hit.collider.tag == "Button")
-            {
-                UIManager.Instance.interactText.SetActive(true);
-               
-                if (Input.GetKey(KeyCode.E))
+                if (Input.GetButtonDown("Fire1") && canUse)
                 {
-                    buttonUse.UseButtonAnim();
+                    Ability();
+                    camState = false;
+                    // canUse = false;                   
+
                 }
             }
             else
             {
-                UIManager.Instance.interactText.SetActive(false);
+                UIManager.Instance.abilityPanel.SetActive(false);
+                TimeManager.DoSpeedUp();
             }
 
-                
         }
+            Debug.DrawRay(fpsCam.transform.position, fpsCam.transform.forward * range, Color.green);
+            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+            {
+                if (hit.collider.tag == "Button")
+                {
+                    UIManager.Instance.interactText.SetActive(true);
 
-        if (camState)
-        {
-            fpsCam.gameObject.SetActive(true);
-        }
-        else
-        {
-            fpsCam.gameObject.SetActive(false);
-        }
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        buttonUse.UseButtonAnim();
+                    }
+                }
+                else
+                {
+                    UIManager.Instance.interactText.SetActive(false);
+                }
+
+
+            }
+            if (camState)
+            {
+                fpsCam.gameObject.SetActive(true);
+            }
+            else
+            {
+                fpsCam.gameObject.SetActive(false);
+            }
     }
 
     void Ability()

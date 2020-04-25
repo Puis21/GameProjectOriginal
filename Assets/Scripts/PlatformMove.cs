@@ -18,26 +18,11 @@ public class PlatformMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-   
+       if(GameManager.canAct)
+        {
             FullControlPlatform();
-       
+        }
     }
-
-    void HorizontalPlatform()
-    {
-        float strafe = Input.GetAxis("Horizontal2") * speed;
-        strafe *= Time.deltaTime;
-        transform.Translate(strafe, 0, 0);
-    }
-
-
-    void VerticalPlatform()
-    {
-        float translation = Input.GetAxis("Vertical") * speed;
-        translation *= Time.deltaTime;
-        transform.Translate(0, 0, translation);
-    }
-
     void FullControlPlatform()
     {
         float translation = Input.GetAxis("Vertical2") * speed;
