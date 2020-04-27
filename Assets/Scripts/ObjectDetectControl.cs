@@ -12,8 +12,6 @@ public class ObjectDetectControl : MonoBehaviour
 
     public bool objectCamera;
 
-
-    public static bool canMovePlatform;
     public static bool canUseAnim;
     public static bool objCamState;
 

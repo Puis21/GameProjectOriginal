@@ -84,7 +84,7 @@ public class ShootSpirit : MonoBehaviour
     void Ability()
     {
         GameObject bulletObject = Instantiate(bullet);
-        bulletObject.transform.position = fpsCam.transform.position;
+        bulletObject.transform.position = fpsCam.transform.position + transform.forward;
         bulletObject.transform.forward = fpsCam.transform.forward;
 
     }

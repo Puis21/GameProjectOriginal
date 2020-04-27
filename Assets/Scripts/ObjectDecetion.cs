@@ -11,7 +11,6 @@ public class ObjectDecetion : MonoBehaviour
     public bool objectCamera;
     public GameObject playerFpsCam;
 
-    public static bool canMovePlatform;
     public static bool canUseAnim;
 
     private void Start()

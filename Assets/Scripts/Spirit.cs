@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spirit : MonoBehaviour
 {
-    public float speed = 8f;
+    public float speed;
     public static bool isControlling;
     public static bool isAlive;
 
@@ -15,25 +15,20 @@ public class Spirit : MonoBehaviour
     void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
-        Debug.Log(isAlive);
 
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "Player" && other.gameObject.tag != "Glass")
+        if (other.gameObject.tag != "Player" && other.gameObject.tag != "Glass" )
         {
-            /*
-            foreach (Transform child in transform)
-            {
-                if (child.tag == "MainCamera")
-                    child.gameObject.SetActive(false);
-            }
-            */
             isAlive = false;
             ShootSpirit.canUse = true;
-            ShootSpirit.camState = true;
             Destroy(gameObject);
+        }
+        if(other.gameObject.tag == "Controlable" || other.gameObject.tag == "Untagged")
+        {
+            ShootSpirit.camState = true;
         }
     }
 }
