@@ -14,6 +14,7 @@ public class PickUpWeapon : MonoBehaviour
     public GameObject thisWeapon;
     public GameObject humanGun;
     public GameObject bulletGun;
+    public GameObject door;
     public Camera fpsCam;
     // Start is called before the first frame update
     void Start()
@@ -25,14 +26,13 @@ public class PickUpWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(fpsCam.transform.position, fpsCam.transform.forward * range, Color.green);
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
             if (hit.collider.tag == "Gun")
             {
                 UIManager.Instance.interactText.SetActive(true);
 
-                if (Input.GetKey(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     humanGun.SetActive(true);
                     thisWeapon.SetActive(false);
@@ -43,8 +43,22 @@ public class PickUpWeapon : MonoBehaviour
             {
                 UIManager.Instance.interactText.SetActive(false);
             }
-        }
 
+            if (hit.collider.tag == "Button")
+            {
+                UIManager.Instance.interactText.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    door.SetActive(false);
+                }
+            }
+            else
+            {
+                UIManager.Instance.interactText.SetActive(false);
+            }
+
+        }
         if(canShoot && Input.GetButtonDown("Fire1"))
         {
             Shoot();

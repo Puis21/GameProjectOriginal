@@ -18,7 +18,7 @@ public class PlatformMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(GameManager.canAct)
+       if(GameManager.Instance.canAct)
         {
             FullControlPlatform();
         }

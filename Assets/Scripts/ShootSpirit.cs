@@ -30,7 +30,7 @@ public class ShootSpirit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.canAct)
+        if (GameManager.Instance.canAct)
         {
             if (Input.GetKey(KeyCode.LeftShift) && !Spirit.isControlling && !Spirit.isAlive)
             {
@@ -52,7 +52,6 @@ public class ShootSpirit : MonoBehaviour
             }
 
         }
-            Debug.DrawRay(fpsCam.transform.position, fpsCam.transform.forward * range, Color.green);
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
             {
                 if (hit.collider.tag == "Button")
@@ -88,5 +87,6 @@ public class ShootSpirit : MonoBehaviour
         bulletObject.transform.forward = fpsCam.transform.forward;
 
     }
+
 }
 

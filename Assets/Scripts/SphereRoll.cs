@@ -36,8 +36,7 @@ public class SphereRoll : MonoBehaviour
 		Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 		Vector2 inputDir = input.normalized;
 		bool running = Input.GetKey(KeyCode.LeftShift);
-		if (GameManager.canAct)
-		{
+
 			Move(inputDir, running);
 
 			if (Input.GetKeyDown(KeyCode.Space))
@@ -45,7 +44,6 @@ public class SphereRoll : MonoBehaviour
 				Jump();
 			}
 			// animator
-		}
 			if (isControlled)
 			{
 				walkSpeed = 3f;

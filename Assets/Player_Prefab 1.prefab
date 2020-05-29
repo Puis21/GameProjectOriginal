@@ -1765,11 +1765,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8d85a18b05fcb4eb8479d2ca25ec51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   jumpForce: 4
   groundLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
+  audFoot: {fileID: 0}
   col: {fileID: 0}
 --- !u!114 &3326816980518048858
 MonoBehaviour:
@@ -1785,7 +1786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeManager: {fileID: 0}
   bullet: {fileID: 4734513567649256041, guid: 2ac770b9f57d80848a4c4deb9c881140, type: 3}
-  range: 0.8
+  range: 5
   fpsCam: {fileID: 5125603153133306144}
 --- !u!1 &3957802434149154158
 GameObject:

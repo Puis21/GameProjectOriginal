@@ -8,17 +8,19 @@ public class SpawnPoint : MonoBehaviour
 
     private Transform objPosition;
     public static bool objectCreated;
+    public static bool canSpawn;
     // Start is called before the first frame update
     void Start()
     {
         objectCreated = false;
+        canSpawn = false;
         objPosition = GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!objectCreated)
+        if (!objectCreated && canSpawn)
         {
             GameObject objectSpawn = Instantiate(objectPrefab);
             objectSpawn.transform.position = objPosition.transform.position;

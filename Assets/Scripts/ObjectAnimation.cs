@@ -17,13 +17,12 @@ public class ObjectAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.canAct)
+        if (GameManager.Instance.canAct)
         {
             if (Input.GetKeyDown(KeyCode.V) && !useAnim)
             {
                 useAnim = true;
                 anim.SetBool("animUsed", useAnim);
-                Debug.Log("UsedAnim");
             }
             else if (Input.GetKeyDown(KeyCode.V) && useAnim)
             {

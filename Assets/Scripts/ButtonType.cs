@@ -29,27 +29,5 @@ public class ButtonType : MonoBehaviour
     {
         yield return new WaitForSeconds(secondsToWait);
         useConnectedAnim.SetInteger("DoorState", 2);
-      /*  yield return new WaitForSeconds(secondsToIdle);
-        doorState = 0;
-        useConnectedAnim.SetInteger("DoorsOpen", doorState);*/
     }
-
-    /*
-    private void OnTriggerStay(Collider other)
-    {
-        if(other.gameObject.tag == "Player")
-        {
-            Debug.Log("PlayerPresent");
-            StopCoroutine("ButtonTimer");
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject.tag == "Player")
-        {
-            StartCoroutine("ButtonTimer");
-        }
-    }
-    */
 }

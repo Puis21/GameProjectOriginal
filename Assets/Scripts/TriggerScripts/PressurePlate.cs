@@ -16,7 +16,6 @@ public class PressurePlate : MonoBehaviour
         if(other.gameObject.tag == "MoveControl")
         {
             objectInteract.SetActive(false);
-            Debug.Log("Entered");
         }
     }
 

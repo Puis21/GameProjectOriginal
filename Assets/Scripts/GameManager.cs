@@ -9,10 +9,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public Transform lastCheckPointPos;
-    
+
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(Instance);
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     public Animator startAnim;
     [HideInInspector] public int deathScientists;
-    public static bool canAct;
+    public bool canAct;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator CanAct()
     {
-        yield return new WaitForSeconds(0f);
+        yield return new WaitForSeconds(10f);
         canAct = true;
     }
 }

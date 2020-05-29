@@ -16,7 +16,6 @@ public class AcidDectection : MonoBehaviour
     {
         if(other.gameObject.tag == "MoveControl")
         {
-            Debug.Log("ALO");
             Destroy(other.gameObject);
             SpawnPoint.objectCreated = false;
             ShootSpirit.camState = true;

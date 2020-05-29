@@ -9,7 +9,6 @@ public class OpenDoorTrigger : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            Debug.Log("intra");
             doorAnim.SetInteger("DoorState", 1);
         }
     }
@@ -18,7 +17,6 @@ public class OpenDoorTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("iese");
             doorAnim.SetInteger("DoorState", 2);
         }
     }

@@ -13,7 +13,6 @@ public class MovementScript : MonoBehaviour
     [SerializeField] private float jumpForce;
 
     public LayerMask groundLayers;
-
     public CapsuleCollider col;
 
     // Start is called before the first frame update
@@ -27,15 +26,7 @@ public class MovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = transform.right * x + transform.forward * z;
-
-        controller.Move(move * speed * Time.deltaTime);
-        */
-        if (GameManager.canAct)
+        if (GameManager.Instance.canAct)
         {
             float translation = Input.GetAxis("Vertical");
             float strafe = Input.GetAxis("Horizontal");
@@ -62,12 +53,6 @@ public class MovementScript : MonoBehaviour
                 speed = 3.0f;
 
             }
-            /*  else if(!isGrounded())
-              {
-                  speed = 1.5f;
-              }*/
-
-
         }
     }
 

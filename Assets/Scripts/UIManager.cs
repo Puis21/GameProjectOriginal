@@ -44,14 +44,10 @@ public class UIManager : MonoBehaviour
             if (gameIsPaused)
             {
                 Resume();
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = false;
             }
             else
             {
                 Pause();
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = true;
             }
         }
     }
@@ -61,14 +57,24 @@ public class UIManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
-        GameManager.canAct = true;
+        GameManager.Instance.canAct = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
-    void Pause()
+    public void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
-        GameManager.canAct = false;
+        GameManager.Instance.canAct = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
+

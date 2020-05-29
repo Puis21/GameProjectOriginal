@@ -36,18 +36,6 @@ public class MovementScript_2 : MonoBehaviour
             anim.SetFloat("Vertical", translation);
             anim.SetFloat("Horizontal", strafe);
 
-
-            if (isGrounded() && Input.GetKeyDown(KeyCode.Space))
-            {
-                anim.SetBool("jumped", true);
-                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-
-            }
-            else
-            {
-                anim.SetBool("jumped", false);
-            }
-
             if (isGrounded())
             {
                 speed = 3.0f;

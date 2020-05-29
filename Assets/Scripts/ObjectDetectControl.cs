@@ -12,7 +12,6 @@ public class ObjectDetectControl : MonoBehaviour
 
     public bool objectCamera;
 
-    public static bool canUseAnim;
     public static bool objCamState;
 
     private void Start()
@@ -21,6 +20,7 @@ public class ObjectDetectControl : MonoBehaviour
         rend = GetComponent<Renderer>();
         rend.enabled = true;
         objCamState = false;
+        SphereRoll.isControlled = false;
     }
 
     private void Update()
@@ -33,13 +33,14 @@ public class ObjectDetectControl : MonoBehaviour
         {
             rend.sharedMaterial = material[0];
         }
-        Debug.Log(Spirit.isControlling);
 
         if (Input.GetKey(KeyCode.F))
         {
+            playerMove.GetComponent<MovementScript>().enabled = true;
             SphereRoll.isControlled = false;
             Spirit.isControlling = false;
             objCamState = false;
+            ShootSpirit.camState = true;
         }
     }
 

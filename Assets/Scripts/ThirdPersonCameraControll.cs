@@ -43,7 +43,7 @@ public class ThirdPersonCameraControll : MonoBehaviour
 
 	void LateUpdate()
 	{
-		if (GameManager.canAct)
+		if (GameManager.Instance.canAct)
 		{
 			yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
 			pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity;
