@@ -40,7 +40,7 @@ public class ShootSpirit : MonoBehaviour
                 if (Input.GetButtonDown("Fire1") && canUse)
                 {
                     Ability();
-                    camState = false;
+                    //camState = false;
                     // canUse = false;                   
 
                 }

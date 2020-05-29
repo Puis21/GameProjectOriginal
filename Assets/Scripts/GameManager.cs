@@ -24,21 +24,13 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public Animator startAnim;
     [HideInInspector] public int deathScientists;
     public bool canAct;
 
     // Start is called before the first frame update
     void Start()
     {
-        startAnim.SetTrigger("LiftGoUp");
         canAct = false;
-        StartCoroutine(CanAct());
         deathScientists = 0;
-    }
-    private IEnumerator CanAct()
-    {
-        yield return new WaitForSeconds(10f);
-        canAct = true;
     }
 }
